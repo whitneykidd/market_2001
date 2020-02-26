@@ -7,6 +7,8 @@ require './lib/vendor'
 class VendorTest < Minitest::Test
   def setup
     @vendor = Vendor.new("Rocky Mountain Fresh")
+    @item1 = Item.new({name: 'Peach', price: "$0.75"})
+    @item2 = Item.new({name: 'Tomato', price: '$0.50'})
   end
 
   def test_it_exists
@@ -15,15 +17,13 @@ class VendorTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal "Rocky Mountain Fresh", @vendor.name
-    assert_equal {}, @vendor.vendor_inventory
+    expected = {}
+    assert_equal expected, @vendor.vendor_inventory
   end
 
-
-#   pry(main)> vendor.inventory
-# #=> {}
-#
-# pry(main)> vendor.check_stock(item1)
-# #=> 0
+  def test_stock_starts_at_zero
+    assert_equal 0, @vendor.check_stock(@item1)
+  end
 #
 # pry(main)> vendor.stock(item1, 30)
 #
