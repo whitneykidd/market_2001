@@ -18,11 +18,17 @@ class VendorTest < Minitest::Test
   def test_it_has_attributes
     assert_equal "Rocky Mountain Fresh", @vendor.name
     expected = {}
-    assert_equal expected, @vendor.vendor_inventory
+    assert_equal expected, @vendor.inventory
   end
 
   def test_stock_starts_at_zero
     assert_equal 0, @vendor.check_stock(@item1)
+  end
+
+  def test_it_can_stock_items
+    @vendor.stock(@item1, 30)
+    assert_equal 30, @vendor.check_stock(@item1)
+    # assert_equal 30, @vendor.inventory
   end
 #
 # pry(main)> vendor.stock(item1, 30)
