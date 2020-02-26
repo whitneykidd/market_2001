@@ -15,5 +15,6 @@ class VendorTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal "Rocky Mountain Fresh", @vendor.name
+    assert_equal [], @vendor.vendor_inventory
   end
 end
