@@ -51,4 +51,11 @@ class MarketTest < Minitest::Test
     expected = ["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
     assert_equal expected, @market.vendor_names
   end
+
+  def test_it_can_return_vendors_that_sell_by_item
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    assert_equal [@vendor1, @vendor3], @market.vendors_that_sell(@item1)
+  end
 end
